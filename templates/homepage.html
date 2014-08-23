@@ -1,0 +1,36 @@
+{% if message %}
+  {{ message }}
+{% endif %}
+
+{% if form %}
+  <form action = "/" method = "POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type = "Submit" value = "Search">
+  </form>
+{% endif %}
+
+{% if jobs%}
+  {% for job in jobs %}
+  <div>
+    <p>
+      <h2>{{ job.jobTitle }}<h2>
+      <h4>{{ job.companyName }}</h4>
+    </p>  
+    {% if job.jobDescription %}
+      <p>{{ job.jobDescription }}</p>
+    {% endif %}
+    {% if job.minSalary %}
+      <p>
+	<h4>Salary:</h4>{{ job.minSalary }} - {{ job.maxSalary }}
+      </p>
+    {% elif job.maxSalary %}
+      <p>
+	<h4>Salary:</h4>{{ job.maxSalary }}
+      <p>
+    {% endif %}
+    <h4>Job Type:</h4>{{ job.jobType }}
+  </div>
+  {% endfor %}
+  <a href = "/" style = "text-decoration:None">Search Again</a>
+{% endif %}
