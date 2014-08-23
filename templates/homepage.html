@@ -15,20 +15,21 @@
   <div>
     <p>
       <h2>{{ job.jobTitle }}<h2>
-      <h4>{{ job.companyName }}</h4>
+      <h4>Company Name:</h4>{{ job.companyName }}
     </p>  
     {% if job.jobDescription %}
       <p>{{ job.jobDescription }}</p>
     {% endif %}
-    {% if job.minSalary %}
-      <p>
-	<h4>Salary:</h4>{{ job.minSalary }} - {{ job.maxSalary }}
-      </p>
-    {% elif job.maxSalary %}
-      <p>
-	<h4>Salary:</h4>{{ job.maxSalary }}
-      <p>
-    {% endif %}
+    <p>
+      <h4>Salary:</h4>
+      {% if job.minSalary != '0' %}
+	{{ job.minSalary }} - {{ job.maxSalary }}
+      {% elif job.maxSalary != '0' %}
+	{{ job.maxSalary }}
+      {% else %}
+	Not Specified
+      {% endif %}
+    </p>
     <h4>Job Type:</h4>{{ job.jobType }}
   </div>
   {% endfor %}
