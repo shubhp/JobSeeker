@@ -17,6 +17,9 @@ def home(request):
       searchArea = form['searchArea'].value()
       classobj = AngelList(queryString, searchArea)
       jobResults = classobj.searchApi()
+      if len(jobResults) == 0:
+	message = "No jobs Found"
+	return render_to_response('homepage.html', {'form' : form, 'jobs' : jobResults, 'queryString' : queryString, 'message' : message}, context_instance = RequestContext(request))
       return render_to_response('homepage.html', {'form' : form, 'jobs' : jobResults, 'queryString' : queryString}, context_instance = RequestContext(request))
     else:
       message = "Form has errors"

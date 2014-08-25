@@ -54,7 +54,9 @@ class AngelList(object):
       response = urllib2.urlopen(url)
       data = response.read()
       data = json.loads(data)
-      data = data['jobs']
+      if len(data) != 0 and self.searchType != "Startup":
+	print data
+	data = data['jobs']
       for obj in data:
 	companyName = obj['startup']['name']
 	jobDescription = obj['description']
