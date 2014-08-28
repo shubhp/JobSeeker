@@ -1,14 +1,14 @@
 import urllib2, json
 
-from Jobs.models import Jobs
+from Jobs.models import Jobs, SearchTags
 
 #class including all functions required for api request
 class AngelList(object):
   #constructor
-  def __init__(self, queryString, searchType):
+  def __init__(self, queryString = '', searchType = ''):
     self.queryString = queryString
     self.searchType = searchType
-    
+
   #function for making api request and storing results in database
   def searchApi(self):
     #check database
@@ -26,7 +26,7 @@ class AngelList(object):
 	id = row['id']
 	ids.append(id)
       urls = self.getUrls(ids)
-      jobs = self.getJobs(urls)
+      jobs = self.getJob(urls)
     return jobs
   
   #function to generate urls for all api requests
@@ -48,7 +48,7 @@ class AngelList(object):
     return urls
   
   #function for fetching jobs through all api requests
-  def getJobs(self, urls):
+  def getJob(self, urls):
     jobs = []
     for url in urls:
       response = urllib2.urlopen(url)

@@ -9,9 +9,15 @@ class Jobs(models.Model):
   minSalary = models.CharField(max_length = 15, null = True, blank = True)
   maxSalary = models.CharField(max_length = 15, null = True, blank = True)
   jobType = models.CharField(max_length = 100, null = True, blank = True)
-  queryString = models.CharField(max_length = 100)
-  searchType = models.CharField(max_length = 15)
+  location = models.CharField(max_length = 100, null = True, blank = True)
   created_at = models.DateTimeField(auto_now_add=True)
   
   def __unicode__(self):
     return self.companyName
+  
+class SearchTags(models.Model):
+  job = models.ForeignKey(Jobs)
+  tagName = models.CharField(max_length = 100)
+  
+  def __unicode__(self):
+    return self.tagName

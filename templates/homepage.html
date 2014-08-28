@@ -34,14 +34,24 @@
 	    <form action = "/" method = "POST" role = "search">
 	      {% csrf_token %}
 	      <div class = "form-group">
-		<label for = "id_queryString">Keyword:</label>
-		<input id = "id_queryString" class = "form-control" type = "text" name = "queryString" maxlength = "100", placeholder="Enter keyword here"/>
+		<label for = "id_queryString">Keyword</label>
+		{% if form.queryString.data %}
+		  <input id = "id_queryString" class = "form-control" type = "text" name = "queryString" maxlength = "100" placeholder="Enter keyword here" value = "{{ form.queryString.data }}"/>
+		{% else %}
+		  <input id = "id_queryString" class = "form-control" type = "text" name = "queryString" maxlength = "100" placeholder="Enter keyword here"/>
+		{% endif %}
 	      </div>
 	      <div class = "form-group">
-		<label for = "id_searchArea">Search By:</label>
-		{{ form.searchArea }}
+		<label for = "id_location">Location</label>
+		{% if form.location.data %}
+		  <input id = "id_location" class = "form-control" type = "text" name = "location" maxlength = "100" placeholder = "Enter location here" value = "{{ form.location.data }}"/>
+		{% else %}
+		  <input id = "id_location" class = "form-control" type = "text" name = "location" maxlength = "100" placeholder = "Enter location here"/>
+		{% endif %}
 	      <div>
-	      <button type = "Submit" class = "btn btn-default">Search</button>
+	      <div class = "form-group">
+		<button type = "Submit" class = "btn btn-default">Search</button>
+	      </div>
 	    </form>
 	  {% endif %}
 	</div>
@@ -63,6 +73,10 @@
 	    <h4>
 	      Company Name:
 	      <small style = "color:black">{{ job.companyName }}</small>
+	    </h4>
+	    <h4>
+	      Location:
+	      <small style = "color:black">{{ job.location }}</small>
 	    </h4>
 	    {% if job.jobDescription %}
 	      <div class = "comment" style = "color:black">{{ job.jobDescription }}</div>

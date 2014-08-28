@@ -3,6 +3,7 @@ from django_cron import CronJobBase, Schedule
 from datetime import datetime, timedelta
 from Jobs.models import Jobs
 from Jobs.script import AngelList
+from Jobs.views import getJobs
 
 class RefreshJobs(CronJobBase):
   RUN_EVERY_MINS = 1
@@ -11,11 +12,4 @@ class RefreshJobs(CronJobBase):
   code = 'Jobs.cron'
   
   def do(self):
-    updateTime = datetime.now() - timedelta(days = 1)
-    queryStrings = Jobs.objects.filter(created_at__lt = updateTime).values('queryString','searchType').distinct()
-    for queryString in queryStrings:
-      searchArea = queryString['searchType']
-      querystring = queryString['queryString']
-      jobs = Jobs.objects.filter(queryString = querystring).delete()
-      classobj = AngelList(querystring, searchArea)
-      jobresults = classobj.searchApi()
+    getJobs()
