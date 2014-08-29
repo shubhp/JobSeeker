@@ -105,7 +105,7 @@ def getJobsByLocation(location, jobResults = ''):
   if jobResults:
     jobs = []
     for job in jobResults:
-      if location in str(job.location):
+      if location.lower() in str(job.location).lower():
 	jobs.append(job)
   else:
     jobs = Jobs.objects.filter(location__icontains = location)
