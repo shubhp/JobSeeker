@@ -5,7 +5,7 @@ class Jobs(models.Model):
   companyName = models.CharField(max_length = 100)
   jobDescription = models.CharField(max_length = 10000, null = True, blank = True)
   jobTitle = models.CharField(max_length = 200)
-  angellist_url = models.CharField(max_length = 300)
+  details_url = models.CharField(max_length = 300)
   minSalary = models.CharField(max_length = 15, null = True, blank = True)
   maxSalary = models.CharField(max_length = 15, null = True, blank = True)
   jobType = models.CharField(max_length = 100, null = True, blank = True)
