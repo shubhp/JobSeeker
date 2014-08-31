@@ -62,9 +62,9 @@ background: rgba(255,255,255,0.2);
 text-decoration: none;
 }
 .sidebar-nav > .sidebar-brand {
-height: 65px;
+height: 40px;
 font-size: 18px;
-line-height: 60px;
+line-height: 30px;
 }
 .sidebar-nav > .sidebar-brand a {
 color: #999999;
