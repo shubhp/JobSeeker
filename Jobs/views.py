@@ -80,11 +80,12 @@ def storeJobstheMuse(jobs):
       companyName = job['company_name']
       details_url = job['external_apply_link']
       jobDescription = job['full_description']
+      logo_url = job['company_small_logo_image']
       jobTitle = job['title']
       jobType = job['type']
       for location in locations:
 	try:
-	  jobsobject = Jobs(companyName = companyName, jobDescription = jobDescription, jobTitle = jobTitle, details_url = details_url, jobType = jobType, location = location)
+	  jobsobject = Jobs(companyName = companyName, jobDescription = jobDescription, jobTitle = jobTitle, details_url = details_url, logo_url = logo_url, jobType = jobType, location = location)
 	  jobsobject.save()
 	  for category in categories:
 	    searchTagObject = SearchTags(job = jobsobject, tagName = category)
