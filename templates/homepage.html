@@ -108,7 +108,7 @@
 		  <small style = "color:black">
 		    {% if job.minSalary and job.minSalary != '0'%}
 		      {{ job.minSalary }} - {{ job.maxSalary }}
-		    {% elif job.maxSalary %}
+		    {% elif job.maxSalary and job.maxSalary != '0'%}
 		      {{ job.maxSalary }}
 		    {% else %}
 		      Not Specified

@@ -12,4 +12,5 @@ class RefreshJobs(CronJobBase):
   code = 'Jobs.cron'
   
   def do(self):
-    getJobstheMuse()
+    #getJobstheMuse()
+    getJobsAngel()

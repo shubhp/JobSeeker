@@ -103,7 +103,7 @@ def getJobsAngel():
   jobs = response.read()
   jobs = json.loads(jobs)
   total_pages = int(jobs['last_page'])+1
-  total_pages = min(total_pages, 51)
+  total_pages = min(total_pages, 11)
   jobs = jobs['jobs']
   storeJobsAngel(jobs)
   for i in range(2, total_pages):
@@ -125,11 +125,12 @@ def storeJobsAngel(jobs):
       jobDescription = job['description']
       jobTitle = job['title']
       details_url = job['angellist_url']
+      logo_url = job['startup']['logo_url']
       minSalary = job['salary_min']
       maxSalary = job['salary_max']
       jobType = job['job_type']
       try:
-	jobsobject = Jobs(companyName = companyName, jobDescription = jobDescription, jobTitle = jobTitle, details_url = details_url, minSalary = minSalary, maxSalary = maxSalary, jobType = jobType)
+	jobsobject = Jobs(companyName = companyName, jobDescription = jobDescription, jobTitle = jobTitle, details_url = details_url, logo_url = logo_url, minSalary = minSalary, maxSalary = maxSalary, jobType = jobType)
 	jobsobject.save()
       except:
 	continue
